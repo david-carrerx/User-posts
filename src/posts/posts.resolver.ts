@@ -8,28 +8,28 @@ import { UpdatePostInput } from './dto/update-post.input';
 export class PostsResolver {
   constructor(private readonly postsService: PostsService) {}
 
-  @Mutation(() => Post)
-  createPost(@Args('createPostInput') createPostInput: CreatePostInput) {
-    return this.postsService.create(createPostInput);
-  }
-
   @Query(() => [Post], { name: 'posts' })
-  findAll() {
+  async posts():Promise<Post[]>{
     return this.postsService.findAll();
   }
 
   @Query(() => Post, { name: 'post' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  async post(@Args('id') id: string): Promise<Post>{
     return this.postsService.findOne(id);
   }
 
   @Mutation(() => Post)
-  updatePost(@Args('updatePostInput') updatePostInput: UpdatePostInput) {
-    return this.postsService.update(updatePostInput.id, updatePostInput);
+  async createPost(@Args('createPostInput') CreatePostInput: CreatePostInput): Promise<Post>{
+    return this.postsService.create(CreatePostInput);
   }
 
   @Mutation(() => Post)
-  removePost(@Args('id', { type: () => Int }) id: number) {
+  async updatePost(@Args('id') id: string, @Args('updatePostInput') updatePostInput: UpdatePostInput): Promise<Post> {
+    return this.postsService.update(id, updatePostInput);
+  }
+
+  @Mutation(() => Post)
+  async removePost(@Args('id') id : string): Promise<Post> {
     return this.postsService.remove(id);
   }
 }

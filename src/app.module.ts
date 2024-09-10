@@ -12,7 +12,7 @@ import { PostsModule } from './posts/posts.module';
     MongooseModule.forRoot('mongodb+srv://lermaangelisw:messigol@project.3bjqd.mongodb.net/UserPosts'),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: false,
+      playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql')
     }),
     PostsModule
