@@ -17,25 +17,25 @@ export class PostsService {
   async create(createPostInput: CreatePostInput): Promise<Post> {
     const {userId} = createPostInput;
 
-    const userExists = await this.userModel.findById(userId).exec();
-    if (!userExists) {
-      throw new NotFoundException(`User with ID "${userId}" not found`);
-    }
+    //const userExists = await this.userModel.findById(userId).exec();
+    //if (!userExists) {
+     // throw new NotFoundException(`User with ID "${userId}" not found`);
+    //}
 
     const newPost = new this.postModel(createPostInput);
     return newPost.save();
   }
 
   async findAll() {
-    return this.postModel.find().exec();
+    return this.postModel.find().populate('userId', 'name').exec();
   }
 
   async findByUserId(userId: string):Promise<Post[]>{
-    return this.postModel.find({userId}).exec();
+    return this.postModel.find({userId}).populate('userId', 'name').exec();
   }
 
   async findOne(id: string) {
-    const post = await this.postModel.findById(id).exec();
+    const post = await this.postModel.findById(id).populate('userId', 'name').exec();
     if(!post){
       throw new NotFoundException(`Post with ID "${id}" not found`);
     }

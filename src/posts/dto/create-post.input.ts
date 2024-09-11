@@ -16,6 +16,6 @@ export class CreatePostInput {
   status?: string
 
   @Field()
-  @IsNotEmpty({ message: "User ID is required" })
+  //@IsNotEmpty({ message: "User ID is required" })
   userId: string;
 }

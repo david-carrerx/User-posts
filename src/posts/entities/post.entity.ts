@@ -31,8 +31,8 @@ export class Post {
   status: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true})
-  @Field(() => String, {nullable: false})
-  userId: string
+  @Field(() => User, {nullable: false})
+  userId: User;
 
   
 }

@@ -2,20 +2,20 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Post {
-  _id: ID!
-  title: String!
-  description: String!
-  status: String!
-  userId: String!
-}
-
 type User {
   _id: ID!
   name: String!
   email: String!
   age: Float!
   status: String!
+}
+
+type Post {
+  _id: ID!
+  title: String!
+  description: String!
+  status: String!
+  userId: User!
 }
 
 type Query {
