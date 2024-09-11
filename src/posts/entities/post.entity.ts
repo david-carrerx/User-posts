@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 export enum statusEnum{
   Active = 'active',
   Inactive = 'inactive',
-  Suspended = 'suspended'
+  Reported = 'reported'
 }
 
 @Schema({timestamps:true})

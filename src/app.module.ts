@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 import { PostsModule } from './posts/posts.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { PostsModule } from './posts/posts.module';
       playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql')
     }),
-    PostsModule
+    PostsModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],

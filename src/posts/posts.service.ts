@@ -28,25 +28,7 @@ export class PostsService {
   }
 
   async update(id: string, updatePostInput: UpdatePostInput) {
-    const allowedStatuses = ['active', 'inactive', 'suspended'];
-
-    if (updatePostInput.status !== undefined) {
-      if (!allowedStatuses.includes(updatePostInput.status)) {
-        throw new BadRequestException('Invalid status value');
-      }
-      if (updatePostInput.status === '') {
-        throw new BadRequestException('Status must not be empty');
-      }
-    }
-
-    if (updatePostInput.title !== undefined && updatePostInput.title === '') {
-      throw new BadRequestException('Title must not be empty');
-    }
-
-    if (updatePostInput.description !== undefined && updatePostInput.description === '') {
-      throw new BadRequestException('Description must not be empty');
-    }
-
+    
     const existingPost = await this.postModel.findByIdAndUpdate(id, updatePostInput, { new: true }).exec();
     if (!existingPost) {
       throw new NotFoundException(`Post with Id "${id}" not found`);

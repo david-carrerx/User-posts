@@ -9,15 +9,28 @@ type Post {
   status: String!
 }
 
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  age: Float!
+  status: String!
+}
+
 type Query {
   posts: [Post!]!
   post(id: String!): Post!
+  users: [User!]!
+  user(id: String!): User!
 }
 
 type Mutation {
   createPost(createPostInput: CreatePostInput!): Post!
   updatePost(id: String!, updatePostInput: UpdatePostInput!): Post!
   removePost(id: String!): Post!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(id: String!, updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): User!
 }
 
 input CreatePostInput {
@@ -29,5 +42,19 @@ input CreatePostInput {
 input UpdatePostInput {
   title: String
   description: String
+  status: String
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  age: Float!
+  status: String = "active"
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  age: Float
   status: String
 }
