@@ -3,6 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 //import { DateScalar } from "src/common/scalars/date.scalars";
 //import { ProductSpecification } from "./product.specification";
 import mongoose from 'mongoose';
+import { User } from 'src/users/entities/user.entity';
 
 export enum statusEnum{
   Active = 'active',
@@ -28,6 +29,12 @@ export class Post {
   @Prop({ required: true, enum: statusEnum, default: statusEnum.Active})
   @Field(() => String, {nullable: false})
   status: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true})
+  @Field(() => String, {nullable: false})
+  userId: string
+
+  
 }
 
 //Create document

@@ -18,6 +18,11 @@ export class PostsResolver {
     return this.postsService.findOne(id);
   }
 
+  @Query(() => [Post], { name: 'postsByUser' })
+  async postsByUser(@Args('userId', { type: () => String }) userId: string): Promise<Post[]>{
+    return this.postsService.findByUserId(userId);
+  }
+
   @Mutation(() => Post)
   async createPost(@Args('createPostInput') CreatePostInput: CreatePostInput): Promise<Post>{
     return this.postsService.create(CreatePostInput);

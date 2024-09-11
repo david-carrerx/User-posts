@@ -15,4 +15,7 @@ export class UpdatePostInput extends PartialType(CreatePostInput) {
   @Field({ nullable: true })
   @IsIn(['active', 'inactive', 'reported'], { message: 'Status is not valid' })
   status?: string
+
+  @Field({ nullable: true })
+  userId?: string;
 }
